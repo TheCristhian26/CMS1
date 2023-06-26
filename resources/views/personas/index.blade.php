@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('titulo', 'persona')
 @section('botonera')
-    <a href="{{ route('personas.create') }}" class="btn btn-primary">Nuevo</a>
+    <a href="{{ route('ventas.create') }}" class="btn btn-primary">Crear una nueva venta</a>
 @endsection
 
 @section('contenido')

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -29,6 +30,9 @@ Route::get('facturas-delete/{factura}',[FacturaController::class,'delete'])->nam
 
 Route::resource('personas',PersonaController::class);
 Route::get('personas-delete/{persona}',[PersonaController::class,'delete'])->name('personas.delete');
+
+Route::resource('ventas',VentasController::class);
+Route::get('ventas-delete/{ventass}',[VentasController::class,'delete'])->name('ventas.delete');
 
 
 

@@ -2,63 +2,92 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Ventas;
+use redirect;
 
 class VentasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $ventas=Ventas::all();
+        return view('ventas.index',compact(["ventas"]));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        //
+        return view('ventas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        //
+        $ventas= Ventas::create($request->all());
+
+        return redirect()->route('ventas.index')
+        ->with('mensaje','venta creada correctamente')
+        ->with('tipo','success');
+
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    
+    public function show($id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        $tareas = $ventas->tareas;
+        return view('ventas.show',compact(['ventas','tareas']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function edit($id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        return view('ventas.edit',compact(['ventas']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+   
+    public function update(Request $request, $id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        $ventas->fill($request->all());
+        $ventas->save();
+
+        return redirect()->route('ventas.index')
+        ->with("mensaje", 'venta editada correctamente')
+        ->with("tipo", 'success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+   
+    public function destroy($id)
     {
-        //
+        $ventas = Ventas::findOrFail($id);
+        $tareas = $ventas->tareas;
+        if(count($tareas)>0){
+            return redirect()->route('ventas.index')
+            ->with("mensaje", 'la venta contiene informacion valiosa la desea eliminar?')
+            ->with("tipo", 'danger');
+        }else{
+            $ventas->delete();
+            return redirect()->route('ventas.index')
+            ->with("mensaje", 'venta eliminada correctamente')
+            ->with("tipo", 'success');
+        }
+
+    }
+
+    public function delete($id)
+    {
+        $ventas = Ventas::findOrFail($id);
+        $tareas = $ventas->tareas;
+        if(count($tareas)>0){
+            return redirect()->route('ventas.index')
+            ->with("mensaje", 'la venta contiene tareas que se deben eliminar')
+            ->with("tipo", 'danger');
+        }
+        return view('ventas.delete',compact(["ventas"]));
     }
 }
