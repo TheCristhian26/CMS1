@@ -53,9 +53,9 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <a href="#" class="btn btn-success">Detalle</a>
-                                <a href="#" class="btn btn-warning" style="margin-left: 10px">Editar</a>
-                                <a href="#" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
+                                <a href="{{ route('factura.show',['factura'=>$facturas->id]) }}" class="btn btn-success">Detalle</a>
+                                <a href="{{ route('factura.edit',['factura'=>$facturas->id]) }}" class="btn btn-warning" style="margin-left: 10px">Editar</a>
+                                <a href="{{ route('factura.delete',['factura'=>$facturas->id]) }}" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
                             </div>
                         </td>
                     </tr>

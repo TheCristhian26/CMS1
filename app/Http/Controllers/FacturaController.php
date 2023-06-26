@@ -7,9 +7,7 @@ use App\Models\Factura;
 
 class FacturaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $facturas = Factura::all();
@@ -22,35 +20,46 @@ class FacturaController extends Controller
         return view('factura.store',compact(['facturas']));
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        //
+        $facturas = Factura::findOrFail($id);
+        $tareas = $facturas->tareas;
+        return view('factura.show',compact(['facturas','tareas']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
     public function edit(string $id)
     {
-        //
+        $facturas = Factura::findOrFail($id);
+        return view('factura.edit',compact(['facturas']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, string $id)
     {
-        //
+        {
+            $facturas = Factura::findOrFail($id);
+            $facturas->fill($request->all());
+            $facturas->save();
+    
+            return redirect()->route('factura.index')
+            ->with("mensaje", 'factura actuliazada')
+            ->with("tipo", 'success');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
-        //
+        $facturas = Factura::findOrFail($id);
+        $tareas = $factura->tareas;
+        if(count($tareas)>0){
+            return redirect()->route('factura.index')
+            ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
+            ->with("tipo", 'danger');
+        }
+        return view('factura.delete',compact(["factura"]));
     }
 }

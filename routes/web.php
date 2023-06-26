@@ -24,9 +24,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('factura',FacturaController::class);
+Route::get('facturas-delete/{factura}',[FacturaController::class,'delete'])->name('factura.delete');
 
 
 Route::resource('personas',PersonaController::class);
+Route::get('personas-delete/{persona}',[PersonaController::class,'delete'])->name('personas.delete');
+
 
 
 

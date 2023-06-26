@@ -26,6 +26,7 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         $persona= Persona::create($request->all());
+
         return redirect()->route('personas.index')
         ->with('mensaje','persona creada correctamente')
         ->with('tipo','success');
@@ -34,26 +35,59 @@ class PersonaController extends Controller
     }
 
     
-    public function show(string $id)
+    public function show($id)
     {
-        
+        $persona = Persona::findOrFail($id);
+        $tareas = $persona->tareas;
+        return view('personas.show',compact(['persona','tareas']));
     }
 
     
-    public function edit(string $id)
+    public function edit($id)
     {
-        
+        $persona = Persona::findOrFail($id);
+        return view('personas.edit',compact(['persona']));
     }
 
    
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        
+        $persona = Persona::findOrFail($id);
+        $persona->fill($request->all());
+        $persona->save();
+
+        return redirect()->route('personas.index')
+        ->with("mensaje", 'Persona editad correctamente')
+        ->with("tipo", 'success');
     }
 
-    
-    public function destroy(string $id)
+   
+    public function destroy($id)
     {
-        
+        $persona = Persona::findOrFail($id);
+        $tareas = $persona->tareas;
+        if(count($tareas)>0){
+            return redirect()->route('personas.index')
+            ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
+            ->with("tipo", 'danger');
+        }else{
+            $persona->delete();
+            return redirect()->route('personas.index')
+            ->with("mensaje", 'Proyecto eliminado correctamente')
+            ->with("tipo", 'success');
+        }
+
+    }
+
+    public function delete($id)
+    {
+        $persona = Persona::findOrFail($id);
+        $tareas = $persona->tareas;
+        if(count($tareas)>0){
+            return redirect()->route('personas.index')
+            ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
+            ->with("tipo", 'danger');
+        }
+        return view('persona.delete',compact(["persona"]));
     }
 }

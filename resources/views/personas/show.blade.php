@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($personas as $persona)
+                    @foreach ($persona as $personas)
                         <tr>
                             <td>{{ $persona->id }}</td>
                             <td>{{ $persona->cedula }}</td>

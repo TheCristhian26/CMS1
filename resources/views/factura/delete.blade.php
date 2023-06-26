@@ -1,18 +1,20 @@
+@extends('layouts.base')
+@section('titulo','Eliminar ')
+@section("botonera")
+<a href="{{ route('factura.index') }}" class="btn btn-success">Regresar </a>
+@endsection
 
+@section('contenido')
 
-
-<div class="row d-flex justify-content-center">
-    <div class="col-md-10">
-      <h3 class="text-center">
-        ¿Está seguro de eliminar la factura?
-      </h3>
-      <form action="{{ route('factura.destroy',['factura'=>$factura->id]) }}" method="POST">
-        @method('delete')
+<div class="text-center">
+    <h3 class="text-center text-danger">
+        ¿Está seguro de eliminar el proyecto?
+    </h3>
+    <form action="{{ route('factura.destroy',['facturas' => $facturas->id]) }}" method="POST">
         @csrf
-        <div class="d-flex justify-content-center">
-          <a href="{{ route('projects.index') }}" class="btn btn-success">Regresar</a>
-          <button type="submit" class="btn btn-danger" style="margin-left:10px">Eliminar</button>
-        </div>
-      </form>
-    </div>
-  </div>
+        @method('delete')
+        <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    </form>
+</div>
+
+@endsection
