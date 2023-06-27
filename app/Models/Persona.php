@@ -18,11 +18,19 @@ class Persona extends Model
         "direccion",
         "email",
         "telefono",
-        "password"
+        "password",
+        "tipo_persona"
     ];
 
     public function ventas(){
-        return $this->hasMany(Persona::class,'Ventas_id');
+        return $this->hasMany(Ventas::class,'Persona_id');
     }
+
+    public function facturas(){
+        return $this->hasMany(Factura::class,'Persona_id');
+    }
+
+
+
 }
 ?>

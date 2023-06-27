@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('factura', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tipo_persona_id')->index();
             $table->unsignedBigInteger('Persona_id')->index();
-            $table->String('Persona_name')->index();
-            $table->unsignedBigInteger('Persona_cedula')->index();
             $table->unsignedBigInteger('Ventas_id')->index();
-            $table->unsignedBigInteger('Ventas_numero_de_ventas')->index();
-            $table->unsignedBigInteger('Ventas_precio')->index();
-            $table->String('Producto_nombre_del_producto')->index();
             $table->timestamps();
+            
+            $table->foreign('Persona_id')->references('id')->on('persona')
+            ->onUpdate('cascade')->onDelete('restrict');
+
+            $table->foreign('Ventas_id')->references('id')->on('ventas')
+            ->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

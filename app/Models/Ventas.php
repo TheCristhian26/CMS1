@@ -19,10 +19,17 @@ class Ventas extends Model
         "nombre_del_producto",
         "numero_de_ventas",
         "precio",
+        "Persona_id"
     ];
 
-    public function facturass(){
-        return $this->hasMany(Factura::class,'Factura_id');
+    public function factura(){
+        return $this->belongsTo(Factura::class,'Factura_id');
     }
+
+    public function persona() {
+        return $this->belongsTo(Persona::class,'Persona_id');
+    }
+
+
 }
 ?>

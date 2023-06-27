@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ventas;
+use App\Models\Persona;
 use redirect;
 
 class VentasController extends Controller
@@ -12,6 +13,7 @@ class VentasController extends Controller
     
     public function index()
     {
+        
         $ventas=Ventas::all();
         return view('ventas.index',compact(["ventas"]));
     }
@@ -19,12 +21,14 @@ class VentasController extends Controller
     
     public function create()
     {
-        return view('ventas.create');
+        $personas = Persona::all();
+        return view('ventas.create',compact(['personas']));
     }
 
    
     public function store(Request $request)
     {
+        return $request;
         $ventas= Ventas::create($request->all());
 
         return redirect()->route('ventas.index')

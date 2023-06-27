@@ -9,6 +9,14 @@
 <form action="{{ route('ventas.store') }}" method="POST">
     @csrf
     <div class="mb-3">
+        <label for="persona_name" class="form-label">Persona</label>
+        <select name="Persona_id" id="">
+            @foreach($personas as $persona)
+            <option value="{{ $persona->id }}">{{ $persona->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="mb-3">
         <label for="persona_name" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="persona_name" name="persona_name">
     </div>

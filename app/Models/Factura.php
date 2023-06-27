@@ -21,5 +21,9 @@ class Factura extends Model
         "precio",
     ];
 
+    public function persona() {
+        return $this->hasMany(Factura::class,'Persona_id');
+    }
+
 }
 ?>

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('titulo', 'persona')
 @section('botonera')
-    <a href="{{ route('ventas.create') }}" class="btn btn-primary">Crear una nueva venta</a>
+    <a href="{{ route('personas.create') }}" class="btn btn-primary">Crear una nueva venta</a>
 @endsection
 
 @section('contenido')
@@ -39,6 +39,7 @@
                         <td>
                             {{ $personas->password }}
                         </td>
+    
                         <td>
                             <div class="d-flex">
                                 <a href="{{ route('personas.show',['persona'=>$personas->id]) }}" class="btn btn-success">Detalle</a>
