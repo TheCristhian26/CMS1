@@ -34,15 +34,11 @@
                                 <a class="nav-link" href="{{ route('personas.index') }}">Lista Clientes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('ventas.index')}}">Ver ventas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('factura.index') }}">ver factura</a>
+                                <a class="nav-link" href="{{ route('RouteVenta.index') }}">ver factura</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contactanos</a>
                             </li>
-
                             <li class="nav-item">
                                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                     @csrf

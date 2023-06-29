@@ -15,23 +15,24 @@ class VentasController extends Controller
     {
         
         $ventas=Ventas::all();
-        return view('ventas.index',compact(["ventas"]));
+        return view('ventas.index',compact(['ventas']));
     }
 
     
     public function create()
     {
+
         $personas = Persona::all();
         return view('ventas.create',compact(['personas']));
     }
 
    
     public function store(Request $request)
+
     {
-        return $request;
         $ventas= Ventas::create($request->all());
 
-        return redirect()->route('ventas.index')
+        return redirect()->route('RouteVenta.index')
         ->with('mensaje','venta creada correctamente')
         ->with('tipo','success');
 
@@ -60,7 +61,7 @@ class VentasController extends Controller
         $ventas->fill($request->all());
         $ventas->save();
 
-        return redirect()->route('ventas.index')
+        return redirect()->route('RouteVenta.index')
         ->with("mensaje", 'venta editada correctamente')
         ->with("tipo", 'success');
     }
@@ -71,12 +72,12 @@ class VentasController extends Controller
         $ventas = Ventas::findOrFail($id);
         $tareas = $ventas->tareas;
         if(count($tareas)>0){
-            return redirect()->route('ventas.index')
+            return redirect()->route('RouteVenta.index')
             ->with("mensaje", 'la venta contiene informacion valiosa la desea eliminar?')
             ->with("tipo", 'danger');
         }else{
             $ventas->delete();
-            return redirect()->route('ventas.index')
+            return redirect()->route('RouteVenta.index')
             ->with("mensaje", 'venta eliminada correctamente')
             ->with("tipo", 'success');
         }
@@ -88,10 +89,10 @@ class VentasController extends Controller
         $ventas = Ventas::findOrFail($id);
         $tareas = $ventas->tareas;
         if(count($tareas)>0){
-            return redirect()->route('ventas.index')
+            return redirect()->route('RouteVenta.index')
             ->with("mensaje", 'la venta contiene tareas que se deben eliminar')
             ->with("tipo", 'danger');
         }
-        return view('ventas.delete',compact(["ventas"]));
+        return view('ventas.delete',compact(["tareas"]));
     }
 }

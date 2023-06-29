@@ -1,34 +1,29 @@
 @extends('layouts.base')
 @section('titulo',"Crear una venta")
 @section("botonera")
-<a href="{{ route('ventas.index') }}" class="btn btn-success">Regresar</a>
+<a href="{{ route('RouteVenta.index') }}" class="btn btn-success">Regresar</a>
 @endsection
 
 @section('contenido')
 
-<form action="{{ route('ventas.store') }}" method="POST">
+<form action="{{ route('RouteVenta.store') }}" method="POST">
     @csrf
     <div class="mb-3">
-        <label for="persona_name" class="form-label">Persona</label>
-        <select name="Persona_id" id="">
+        
+        <label for="persona_id" class="form-label">Persona</label>
+        <select name="persona_id" id="persona_id">
             @foreach($personas as $persona)
-            <option value="{{ $persona->id }}">{{ $persona->name }}</option>
+            <option value="{{ $persona->id }}">{{ $persona->name }},{{$persona->apellido}},{{ $persona->tipo_persona }}</option>
             @endforeach
         </select>
     </div>
-    <div class="mb-3">
-        <label for="persona_name" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="persona_name" name="persona_name">
-    </div>
 
-    <div class="mb-3">
-        <label for="persona_cedula" class="form-label">cedula</label>
-        <input type="text" class="form-control" id="persona_cedula" name="persona_cedula">
-    </div>
-
-    <div class="mb-3">
-        <label for="Producto_nombre_del_producto" class="form-label">nombre del producto </label>
-        <input type="text" class="form-control" id="Producto_nombre_del_producto" name="Producto_nombre_del_producto">
+    <div class="d-flex justify-content-center">
+        <input type="file" class="form-control" id="input_imagen"  style="display:none">
+        <textarea name="imagen" id="imagen_texto" class="d-none"></textarea>
+        <div style="border: solid 1px black">
+            <img src="{{ asset('img/default.png') }}" alt="" id="imagen" name="imagen"     width="150px" height="150px">
+        </div>
     </div>
 
     <div class="mb-3">
@@ -37,20 +32,18 @@
     </div>
 
     <div class="mb-3">
-        <label for="precio_de_fruto" class="form-label">Precio</label>
-        <input type="text" class="form-control" id="precio_de_fruto" name="precio_de_fruto">
+        <label for="tipo_persona" class="form-label">Nombre del fruto</label>
+        <select type="text" class="form-select" aria-label="Default select example" id="tipo_persona" name="tipo_persona">
+         <option value="Llene su campo"></option>
+         <option value="Anoli">Anoli</option>
+         <option value="Bruto">Bruto</option>
+         <option value="Hibrito">Hibrido</option>
+       </select>
     </div>
 
     <div class="mb-3">
-        <label for="tipo_persona_id" class="form-label">Tipo persona</label>
-        <input type="text" class="form-control" id="tipo_persona_id" name="tipo_persona_id">
-    </div>
-    <div class="d-flex justify-content-center">
-        <input type="file" class="form-control" id="input_imagen"  style="display:none">
-        <textarea name="imagen" id="imagen_texto" class="d-none"></textarea>
-        <div style="border: solid 1px black">
-            <img src="{{ asset('img/default.png') }}" alt="" id="imagen"  width="150px" height="150px">
-        </div>
+        <label for="precio" css="form-label">Precio</label>
+        <input type="text" class="form-control" id="precio" name="precio">
     </div>
 
     <button type="submit" class="btn btn-primary">Crear</button>

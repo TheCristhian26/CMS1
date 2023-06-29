@@ -12,14 +12,11 @@ class Ventas extends Model
     protected $table = "ventas";
 
     protected $fillable = [
-        "name",
-        "cedula",
-        "tipo_persona",
         "imagen",
         "nombre_del_producto",
-        "numero_de_ventas",
+        "cantidad_de_fruto",
         "precio",
-        "Persona_id"
+        "persona_id"
     ];
 
     public function factura(){

@@ -26,6 +26,16 @@
     <div class="mb-3">
         <label for="direccion" class="form-label">Direccion</label>
         <input type="text" class="form-control" id="direccion" name="direccion">
+        
+    </div>
+
+    <div class="mb-3">
+       <label for="tipo_persona" class="form-label">Tipo de persona</label>
+       <select type="text" class="form-select" aria-label="Default select example" id="tipo_persona" name="tipo_persona">
+        <option value="Llene su campo"></option>
+        <option value="comprador">comprador</option>
+        <option value="vendedor">vendedor</option>
+      </select>
     </div>
 
     <div class="mb-3">

@@ -1,7 +1,11 @@
 @extends('layouts.base')
 @section('titulo', 'ventas')
 @section('botonera')
-    <a href="{{ route('ventas.create') }}" class="btn btn-primary">Nuevo</a>
+    
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary"><a href="{{ route('personas.create') }}" class="btn btn-primary">Crear Cliente</a></button>
+        <button type="button" class="btn btn-primary"><a href="{{ route('RouteVenta.create') }}" class="btn btn-primary"> Crear Venta</a></button>
+    </div>
 @endsection
 
 @section('contenido')
@@ -12,49 +16,39 @@
                 <tr>
                     <td>ID</td>
                     <td>imagen</td>
-                    <td>Nombre</td>
-                    <td>Cc</td>
-                    <td>Cantidad de kg</td>
-                    <td> precio </td>
-                    <td>tipo de persona</td>
-                    <td>numero de ventas </td>
+                    <td>Nombre del producto</td>
+                    <td>Cantidad de Klg</td>
+                    <td>Precio</td>
+                    <td> tipo de persona  </td>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ventas as $ventass)
                     <tr>
                         <td>
-                            {{ $ventas->id }}
+                            {{ $ventass->id }}
                         </td>
                         <td>
-                            {{ $ventas->imagen }}
+                            <img src="{{$ventass->imagen}}" alt="" width="100px" height="100px">
                         </td>
                         <td>
-                            {{ $ventas->persona_name }}
+                            {{ $ventass->nombre_del_producto}}
                         </td>
                         <td>
-                            {{ $ventas->persona_cedula }}
+                            {{ $ventass->cantidad_de_fruto }}
                         </td>
                         <td>
-                            {{ $ventas->cantidad_de_fruto }}
+                            {{ $ventass->precio }}
                         </td>
                         <td>
-                            {{ $ventas->precio_de_fruto }}
+                            {{ $ventass->persona_id }}
                         </td>
-                        <td>
-                            {{ $ventas->tipo_persona  }}
-                        </td>
-                        <td>
-                            {{ $ventas->Producto_nombre_del_producto }}
-                        </td>
-                        <td>
-                            {{ $ventas->numero_de_ventas }}
-                        </td> 
                         <td>
                             <div class="d-flex">
-                                <a href="#" class="btn btn-success">Detalle</a>
-                                <a href="#" class="btn btn-warning" style="margin-left: 10px">Editar</a>
-                                <a href="#" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
+                                <a href="{{ route('RouteVenta.show',['RouteVentum'=>$ventass->id]) }}" class="btn btn-success">Detalle</a>
+                                <a href="{{ route('RouteVenta.edit',['RouteVentum'=>$ventass->id]) }}" class="btn btn-warning" style="margin-left: 10px">Editar</a>
+                                <a href="{{ route('ventas.delete',['Ventas'=>$ventass->id]) }}" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
                             </div>
                         </td>
                     </tr>

@@ -38,8 +38,8 @@ class PersonaController extends Controller
     public function show($id)
     {
         $persona = Persona::findOrFail($id);
-        $tareas = $persona->tareas;
-        return view('personas.show',compact(['persona','tareas']));
+        $ventas = $persona->ventas;
+        return view('personas.show',compact(['persona','ventas']));
     }
 
     
@@ -65,15 +65,15 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         $persona = Persona::findOrFail($id);
-        $tareas = $persona->tareas;
-        if(count($tareas)>0){
+        $ventas = $persona->ventas;
+        if(count($ventas)>0){
             return redirect()->route('personas.index')
-            ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
+            ->with("mensaje", 'El proyecto contiene ventas que se deben eliminar')
             ->with("tipo", 'danger');
         }else{
             $persona->delete();
             return redirect()->route('personas.index')
-            ->with("mensaje", 'Proyecto eliminado correctamente')
+            ->with("mensaje", 'persona eliminado correctamente')
             ->with("tipo", 'success');
         }
 
@@ -82,12 +82,12 @@ class PersonaController extends Controller
     public function delete($id)
     {
         $persona = Persona::findOrFail($id);
-        $tareas = $persona->tareas;
-        if(count($tareas)>0){
+        $ventas = $persona->ventas;
+        if(count($ventas)>0){
             return redirect()->route('personas.index')
             ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
             ->with("tipo", 'danger');
         }
-        return view('persona.delete',compact(["persona"]));
+        return view('personas.delete',compact(["ventas"]));
     }
 }

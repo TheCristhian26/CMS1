@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('factura', function (Blueprint $table) {
+        Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Persona_id')->index();
-            $table->unsignedBigInteger('Ventas_id')->index();
+            $table->enum('nombre_del_producto',['Anoli','Bruto','Hibrido']);
+            $table->longText('imagen')->nullable();
+            $table->float('cantidad_de_fruto')->nullable();
+            $table->float('precio')->nullable();
+            $table->unsignedBigInteger('persona_id')->index();
             $table->timestamps();
             
-            $table->foreign('Persona_id')->references('id')->on('persona')
-            ->onUpdate('cascade')->onDelete('restrict');
-
-            $table->foreign('Ventas_id')->references('id')->on('ventas')
+            $table->foreign('persona_id')->references('id')->on('persona')
             ->onUpdate('cascade')->onDelete('restrict');
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('factura');
+        Schema::dropIfExists('ventas');
     }
 };

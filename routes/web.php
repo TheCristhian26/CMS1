@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ProfileController;
+
 
 
 /*
@@ -24,18 +24,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('factura',FacturaController::class);
-Route::get('facturas-delete/{factura}',[FacturaController::class,'delete'])->name('factura.delete');
-
-
 Route::resource('personas',PersonaController::class);
 Route::get('personas-delete/{persona}',[PersonaController::class,'delete'])->name('personas.delete');
 
-Route::resource('ventas',VentasController::class);
-Route::get('ventas-delete/{ventass}',[VentasController::class,'delete'])->name('ventas.delete');
+
+Route::resource('RouteVenta',VentasController::class);
+Route::get('ventas/{Ventas}',[VentasController::class,'delete'])->name('ventas.delete');
 
 
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+

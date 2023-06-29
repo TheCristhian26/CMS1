@@ -1,7 +1,7 @@
 @extends('layouts.base')
-@section('titulo', 'Detalle de proyecto')
+@section('titulo', 'Factura')
 @section("botonera")
-<a href="{{ route('ventas.index') }}" class="btn btn-success">Regresar</a>
+<a href="{{ route('RouteVenta.index') }}" class="btn btn-success">Regresar</a>
 @endsection
 @section('contenido')
     <div class="row d-flex justify-content-center">
@@ -10,19 +10,34 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td width="10%">imagen</td>
-                        <td width="45%">id</td>
-                        <td width="45%">nombre</td>
-                        <td width="45%">cc</td>
+                        <td>ID</td>
+                        <td>imagen</td>
+                        <td>Cantidad de kg</td>
+                        <td> precio </td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($facturas as $facturass)
+                    @foreach ($ventas as $ventass) 
                         <tr>
-                            <td>{{ $facturas->imagen }}</td>
-                            <td>{{ $facturas->id }}</td>
-                            <td>{{ $facturas->persona_name }}</td>
-                            <td>{{ $facturas->persona_cedula }}</td>
+                            <td>
+                                {{ $ventas->id }}
+                            </td>
+
+                            <td>
+                                 <img src="{{$ventas->imagen}}" alt="" width="100px" height="100px">
+                            </td>
+
+                            <td>
+                                {{ $ventas->cantidad_de_fruto }}
+                            </td>
+
+                            <td>
+                                {{ $ventas->precio }}
+                            </td>
+
+                            <td>
+                                {{ $ventas->nombre_del_producto }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
