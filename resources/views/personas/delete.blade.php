@@ -8,7 +8,7 @@
 
 <div class="text-center">
     <h3 class="text-center text-danger">
-        ¿Está seguro de eliminar el proyecto?
+        ¿Está seguro de eliminar la persona?
     </h3>
     <form action="{{ route('personas.delete',['persona' => $persona->id]) }}" method="POST">
         @csrf

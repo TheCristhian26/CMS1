@@ -70,29 +70,15 @@ class VentasController extends Controller
     public function destroy($id)
     {
         $ventas = Ventas::findOrFail($id);
-        $tareas = $ventas->tareas;
-        if(count($tareas)>0){
-            return redirect()->route('RouteVenta.index')
-            ->with("mensaje", 'la venta contiene informacion valiosa la desea eliminar?')
-            ->with("tipo", 'danger');
-        }else{
-            $ventas->delete();
-            return redirect()->route('RouteVenta.index')
-            ->with("mensaje", 'venta eliminada correctamente')
-            ->with("tipo", 'success');
-        }
-
+        $ventas->delete();
+        return redirect()->route('RouteVenta.index')
+        ->with("mensaje", 'Tarea eliminada correctamente')
+        ->with("tipo", 'success');
     }
 
     public function delete($id)
     {
         $ventas = Ventas::findOrFail($id);
-        $tareas = $ventas->tareas;
-        if(count($tareas)>0){
-            return redirect()->route('RouteVenta.index')
-            ->with("mensaje", 'la venta contiene tareas que se deben eliminar')
-            ->with("tipo", 'danger');
-        }
-        return view('ventas.delete',compact(["tareas"]));
+        return view('ventas.delete', compact(['ventas']));
     }
 }

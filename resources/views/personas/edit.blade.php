@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('titulo',"Editar una nueva persona")
+@section('titulo',"Editar persona")
 @section("botonera")
 <a href="{{ route('personas.index') }}" class="btn btn-success">Regresar</a>
 @endsection

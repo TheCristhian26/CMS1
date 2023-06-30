@@ -29,7 +29,7 @@ Route::get('personas-delete/{persona}',[PersonaController::class,'delete'])->nam
 
 
 Route::resource('RouteVenta',VentasController::class);
-Route::get('ventas/{Ventas}',[VentasController::class,'delete'])->name('ventas.delete');
+Route::get('ventas-delete/{Ven}',[VentasController::class,'delete'])->name('ventas.delete');
 
 
 

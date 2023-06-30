@@ -8,9 +8,9 @@
 
 <div class="text-center">
     <h3 class="text-center text-danger">
-        ¿Está seguro de eliminar el proyecto?
+        ¿Está seguro de eliminar la venta ?
     </h3>
-    <form action="{{ route('RouteVenta.delete',['Ventsa' => $ventass->id]) }}" method="POST">
+    <form action="{{ route('ventas.delete',['Ven' => $ventas->id]) }}" method="POST">
         @csrf
         @method('delete')
         <button type="submit" class="btn btn-danger mt-3">Eliminar</button>

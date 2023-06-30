@@ -48,7 +48,7 @@
                             <div class="d-flex">
                                 <a href="{{ route('RouteVenta.show',['RouteVentum'=>$ventass->id]) }}" class="btn btn-success">Detalle</a>
                                 <a href="{{ route('RouteVenta.edit',['RouteVentum'=>$ventass->id]) }}" class="btn btn-warning" style="margin-left: 10px">Editar</a>
-                                <a href="{{ route('ventas.delete',['Ventas'=>$ventass->id]) }}" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
+                                <a href="{{ route('ventas.delete',['Ven'=>$ventass->id]) }}" class="btn btn-danger" style="margin-left: 10px">Eliminar</a>
                             </div>
                         </td>
                     </tr>

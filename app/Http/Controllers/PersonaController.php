@@ -65,29 +65,15 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         $persona = Persona::findOrFail($id);
-        $ventas = $persona->ventas;
-        if(count($ventas)>0){
-            return redirect()->route('personas.index')
-            ->with("mensaje", 'El proyecto contiene ventas que se deben eliminar')
-            ->with("tipo", 'danger');
-        }else{
-            $persona->delete();
-            return redirect()->route('personas.index')
-            ->with("mensaje", 'persona eliminado correctamente')
-            ->with("tipo", 'success');
-        }
-
+        $persona->delete();
+        return redirect()->route('personas.index')
+        ->with("mensaje", 'persona liminada correctamente')
+        ->with("tipo", 'success');
     }
 
     public function delete($id)
     {
         $persona = Persona::findOrFail($id);
-        $ventas = $persona->ventas;
-        if(count($ventas)>0){
-            return redirect()->route('personas.index')
-            ->with("mensaje", 'El proyecto contiene tareas que se deben eliminar')
-            ->with("tipo", 'danger');
-        }
-        return view('personas.delete',compact(["ventas"]));
+        return view('personas.delete', compact(['persona']));
     }
 }
